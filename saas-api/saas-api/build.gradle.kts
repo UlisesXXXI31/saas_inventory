@@ -36,3 +36,7 @@ dependencies {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+//Para que no falle al empaquetar en Render
+tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    archiveFileName.set("app.jar")
+}
