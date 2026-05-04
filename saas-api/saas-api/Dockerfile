@@ -1,20 +1,22 @@
-# Etapa 1: Compilación
+# ETAPA 1: COMPILACIÓN
 FROM eclipse-temurin:17-jdk-alpine AS build
 WORKDIR /app
 
-# Copiamos todo el contenido del repo
+# Copiamos todo el contenido del repositorio
 COPY . .
 
-# Entramos a la carpeta de la API, damos permisos y compilamos
-RUN chmod +x ./saas-api/gradlew
-RUN ./saas-api/gradlew -p saas-api bootJar --no-daemon
+# Localizamos el gradlew (usando la ruta doble que tienes en GitHub)
+RUN chmod +x ./saas-api/saas-api/gradlew
 
-# Etapa 2: Ejecución
+# Compilamos especificando la ruta al proyecto
+RUN ./saas-api/saas-api/gradlew -p saas-api/saas-api bootJar --no-daemon
+
+# ETAPA 2: EJECUCIÓN
 FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
-# Buscamos el JAR dentro de la carpeta build de saas-api
-COPY --from=build /app/saas-api/build/libs/app.jar app.jar
+# Copiamos el JAR generado (la ruta de salida de Gradle es fija)
+COPY --from=build /app/saas-api/saas-api/build/libs/app.jar app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
