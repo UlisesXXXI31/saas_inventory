@@ -1,0 +1,23 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Frontend (React)
+saas-frontend/node_modules/
+saas-frontend/dist/
+saas-frontend/build/
+saas-frontend/.env
+
+# Backend (Spring Boot / Java)
+saas-api/target/
+saas-api/build/
+saas-api/.gradle/
+saas-api/bin/
+saas-api/out/
+
+# IDEs y Sistema
+.idea/
+.vscode/
+*.iml
+.DS_Store
