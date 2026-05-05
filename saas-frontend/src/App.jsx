@@ -4,6 +4,8 @@ import { Package, Tag, Layers } from 'lucide-react'
 import toast, {Toaster}  from 'react-hot-toast';
 import ProductoForm from './components/ProductoForm';
 import ProductoCard from './components/ProductoCard';
+import ProductoList from './components/ProductoList'; // El nuevo componente
+import api from './api/axiosInstance'; // Tu instancia de Axios configurada
 
 function App() {
   const [productos, setProductos] = useState([])
@@ -24,11 +26,17 @@ const productosFiltrados = productos.filter(p =>
   empresa: { id: 1 } // Lo vinculamos a la empresa que creamos
 })
 
-  const fetchProductos = () => {
-    axios.get('http://localhost:8080/api/v1/productos/empresa/1')
-      .then(res => setProductos(res.data))
-      .catch(err => console.error("Error:", err))
-  }
+  // REEMPLAZA tus llamadas de axios directo por el Service o la instancia 'api'
+  const fetchProductos = async () => {
+    try {
+      // Usamos la instancia que apunta a Render o Local según el .env
+      const res = await api.get('/productos/empresa/1');
+      setProductos(res.data);
+    } catch (err) {
+      console.error("Error:", err);
+      toast.error("No se pudo conectar con el servidor");
+    }
+  };
 
   useEffect(() => {
     fetchProductos()
@@ -155,11 +163,18 @@ const cancelarEdicion = () => {
       boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
     }}
   />
+  
   {busqueda && (
     <p style={{ color: '#888', marginTop: '10px', fontSize: '0.9rem' }}>
       Mostrando {productosFiltrados.length} resultados para "{busqueda}"
     </p>
   )}
+  {/* --- LISTADO (Limpio y escalable) --- */}
+  <ProductoList 
+        productos={productosFiltrados} 
+        iniciarEdicion={iniciarEdicion} 
+        eliminarProducto={eliminarProducto} 
+  />
 </div>
 
 {/* --- LISTADO DE PRODUCTOS (Usando la lista filtrada) --- */}
