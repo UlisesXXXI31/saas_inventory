@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Aplica a todos los endpoints de la API
-                .allowedOrigins(frontendUrl, "https://tu-url-de-react.onrender.com") // Permitimos local y producción
+                .allowedOrigins(frontendUrl, "https://saas-inventory-1.onrender.com") // Permitimos local y producción
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
