@@ -1,16 +1,19 @@
 spring:
   application:
     name: saas-api
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/inventario_db
+    # Usamos la sintaxis ${VARIABLE:VALOR_POR_DEFECTO}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/inventario_db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:root}
     driverClassName: org.postgresql.Driver
-    username: postgres
-    password: root
+
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    # Eliminamos database-platform manual; Hibernate lo detecta automáticamente
     hibernate:
       ddl-auto: update
     show-sql: true
-  h2:
-    console:
-      enabled: true
+    properties:
+      hibernate:
+        format_sql: true
