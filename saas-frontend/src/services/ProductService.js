@@ -1,4 +1,4 @@
-import api from '../api/axionsInstance';
+import api from '../api/axiosInstance';
 
 /**
  * Servicio para gestionar productos del SaaS
