@@ -1,21 +1,26 @@
 import axios from 'axios';
 
-//creamos una instancioa de axios preconfigurada con la url base de nuestra api
+// Validamos la existencia de la URL base para asegurar la escalabilidad
+const baseURL = import.meta.env.VITE_API_URL;
+
+if (!baseURL) {
+    console.error("❌ Error de Infraestructura: VITE_API_URL no está definida en el entorno.");
+}
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: baseURL,
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-
-
-//interceptor de manejo global de errores
+// Interceptor de manejo global de errores (Principio de Fail-Fast)
 api.interceptors.response.use(
     response => response,
     error => {
-        // Aquí puedes manejar los errores globalmente, por ejemplo, mostrando una notificación
-        console.error('APIError:', error.response?.data || error.message);
+        // En un SaaS profesional, aquí mapearías los errores a mensajes amigables
+        const message = error.response?.data?.message || error.message;
+        console.error('Core-API-Error:', message);
         return Promise.reject(error);
     }
 );
