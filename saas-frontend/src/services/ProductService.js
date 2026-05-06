@@ -1,38 +1,47 @@
 import api from '../api/axiosInstance';
 
 /**
- * Servicio para gestionar productos del SaaS
- * Esta capa es equivalente a un Service en Spring Boot, encargada de manejar la lógica de negocio relacionada con los productos y comunicarse con la API. 
- * Aquí se definen métodos para obtener, crear, actualizar y eliminar productos, utilizando la instancia de axios preconfigurada para realizar las solicitudes HTTP a la API.
+ * ProductService: Capa de abstracción para la API de Productos.
+ * Sigue el patrón de diseño de servicios para desacoplar la UI de la red.
  */
+const BASE_URL = '/api/v1/productos';
 
 const ProductService = {
-    // Obtener todos los productos
-    getAll: async() => {
-       const response = await api.get('/api/v1/productos');
-       return response.data;    
+    
+    // Obtener productos por empresa (El endpoint que vimos en Swagger)
+    getByEmpresa: async (empresaId) => {
+        try {
+            const response = await api.get(`${BASE_URL}/empresa/${empresaId}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error cargando productos de la empresa:", error);
+            throw error;
+        }
     },
 
-
-
-    //Crear un nuevo objeto
-    create: async(productData) => {
-        const response = await api.post('/productos', productData);
+    // Obtener todos (opcional, según tu controlador)
+    getAll: async () => {
+        const response = await api.get(BASE_URL);
         return response.data;
     },
 
-    //Actualizar un producto existente
-    update: async(id, productData) => {
-        const response = await api.put(`/productos/${id}`, productData);
+    // Crear: Ahora apunta a /api/v1/productos
+    create: async (productData) => {
+        const response = await api.post(BASE_URL, productData);
+        return response.data;
+    },
+
+    // Actualizar: /api/v1/productos/{id}
+    update: async (id, productData) => {
+        const response = await api.put(`${BASE_URL}/${id}`, productData);
         return response.data;
     },
     
-    //Eliminar un producto por su ID
-    delete: async(id) => {
-        const response = await api.delete(`/productos/${id}`);
+    // Eliminar: /api/v1/productos/{id}
+    delete: async (id) => {
+        const response = await api.delete(`${BASE_URL}/${id}`);
         return response.data;
     }
-
-}
+};
 
 export default ProductService;
