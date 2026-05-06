@@ -1,24 +1,33 @@
 import axios from 'axios';
 
-// Validamos la existencia de la URL base para asegurar la escalabilidad
-const baseURL = import.meta.env.VITE_API_URL;
+// Limpiamos la URL de posibles corchetes, comillas o espacios accidentales
+const getCleanBaseURL = () => {
+    let url = import.meta.env.VITE_API_URL || "";
+    // Elimina corchetes [], comillas y espacios
+    return url.replace(/[\[\]"']/g, "").trim();
+};
+
+const baseURL = getCleanBaseURL();
 
 if (!baseURL) {
-    console.error("❌ Error de Infraestructura: VITE_API_URL no está definida en el entorno.");
+    console.error("❌ Error de Infraestructura: VITE_API_URL no está definida.");
 }
 
 const api = axios.create({
-    baseURL: baseURL,
+    baseURL: baseURL, 
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-// Interceptor de manejo global de errores (Principio de Fail-Fast)
+// Interceptor con lógica de negocio (Principio de Fail-Fast)
 api.interceptors.response.use(
     response => response,
     error => {
-        // En un SaaS profesional, aquí mapearías los errores a mensajes amigables
+        // Mapeo senior de errores
+        if (error.code === 'ERR_CONNECTION_REFUSED') {
+            console.error("🚨 El servidor backend está caído o la URL es incorrecta.");
+        }
         const message = error.response?.data?.message || error.message;
         console.error('Core-API-Error:', message);
         return Promise.reject(error);
