@@ -9,7 +9,7 @@ import api from '../api/axiosInstance';
 const ProductService = {
     // Obtener todos los productos
     getAll: async() => {
-       const response = await api.get('/productos');
+       const response = await api.get('/api/v1/productos');
        return response.data;    
     },
 
