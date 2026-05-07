@@ -38,7 +38,7 @@ public class Producto {
     private Integer stock;
 
     // Relación con la empresa propietaria del producto
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empresa_id", nullable = false)
     @JsonIgnoreProperties("productos")
     private Empresa empresa; // Relación con la empresa propietaria del producto
