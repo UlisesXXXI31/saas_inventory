@@ -22,5 +22,6 @@ public class SaasApiApplication {
                 System.out.println("❌ ERROR: " + e.getMessage());
             }
         };
+	}
 
 }
