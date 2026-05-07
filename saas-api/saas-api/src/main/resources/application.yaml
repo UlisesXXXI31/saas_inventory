@@ -3,32 +3,31 @@ spring:
     name: saas-api
 
   datasource:
-    # Usamos la sintaxis ${VARIABLE:VALOR_POR_DEFECTO}
     url: ${DB_URL:jdbc:postgresql://localhost:5432/inventario_db}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:root}
-    driverClassName: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-    # Eliminamos database-platform manual; Hibernate lo detecta automáticamente
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
+# Estos bloques DEBEN estar al mismo nivel que 'spring:'
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-    operations-sorter: alpha
-    tags-sorter: alpha
   api-docs:
     path: /v3/api-docs
 
-    app:
+server:
+  port: ${PORT:8080}
+
+# Variable personalizada para tu WebConfig.java
+app:
   cors:
     allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173}
-
-  server:
-  port: ${PORT:8080}
