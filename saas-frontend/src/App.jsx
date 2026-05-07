@@ -5,7 +5,7 @@ import toast, {Toaster}  from 'react-hot-toast';
 import ProductoForm from './components/ProductoForm';
 import ProductoCard from './components/ProductoCard';
 import ProductoList from './components/ProductoList'; // El nuevo componente
-import api from '../api/axiosInstance'; // Tu instancia de Axios configurada
+import api from './api/axiosInstance'; // Tu instancia de Axios configurada
 
 function App() {
   const [productos, setProductos] = useState([])
