@@ -11,14 +11,13 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${app.cors.allowed-origins}")
     private String allowedOrigins;
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        // "/**" asegura que todos los endpoints (productos, empresa, etc.) estén cubiertos
-        registry.addMapping("/**") 
-                .allowedOrigins(allowedOrigins.split(",")) // Soporta múltiples URLs separadas por coma
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true)
-                .maxAge(3600);
-    }
+   @Override
+public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**") 
+            .allowedOriginPatterns("*") // Usa patterns en lugar de allowedOrigins si vas a usar credenciales
+            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            .allowedHeaders("*")
+            .allowCredentials(true) // Ahora sí funcionará con el pattern "*"
+            .maxAge(3600);
+}
 }
