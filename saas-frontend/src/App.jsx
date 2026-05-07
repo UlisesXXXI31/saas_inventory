@@ -60,11 +60,11 @@ const productosFiltrados = productos.filter(p =>
   try {
     if (editando) {
       // Si estamos editando, disparamos el PUT
-      await axios.put(`http://localhost:8080/api/v1/productos/${idEnEdicion}`, nuevoProducto);
+      await api.put(`/productos/${idEnEdicion}`, nuevoProducto);
       toast.success("Producto actualizado con éxito");  
     } else {
       // Si no, el POST de siempre
-      await axios.post('http://localhost:8080/api/v1/productos', nuevoProducto);
+      await api.post('/productos', nuevoProducto);
       toast.success("Producto guardado con éxito");
     }
 
@@ -93,7 +93,7 @@ const eliminarProducto = async (id) => {
   if (window.confirm("¿Estás seguro de que quieres eliminar este producto?")) {
     try {
       // Llamamos a tu nuevo EndPoint
-      await axios.delete(`http://localhost:8080/api/v1/productos/${id}`);   
+      await api.delete(`/productos/${id}`);   
       // Actualizamos la pantalla al instante quitando el producto borrado
       setProductos(productos.filter(producto => producto.id !== id));
       toast.success("Producto eliminado con éxito");
