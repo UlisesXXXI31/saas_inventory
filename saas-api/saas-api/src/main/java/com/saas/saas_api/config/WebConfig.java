@@ -9,11 +9,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/v1/**") // Endpoint base de tu API
-                .allowedOrigins(
-                    "https://saas-inventory-1.onrender.com", // Tu Frontend en Render
-                    "http://localhost:5173"                 // Tu entorno local de Vite
-                )
+        registry.addMapping("/api/v1/productos") // Endpoint base de tu API
+                .allowedOrigins("https://saas-inventory-1.onrender.com")// Tu Frontend en Render
+                                 
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
