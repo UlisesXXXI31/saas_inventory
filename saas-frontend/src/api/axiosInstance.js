@@ -3,6 +3,7 @@ import axios from 'axios';
 // Limpiamos la URL de posibles corchetes, comillas o espacios accidentales
 const getCleanBaseURL = () => {
     let url = import.meta.env.VITE_API_URL || "";
+    
     // Elimina corchetes [], comillas y espacios
     return url.replace(/[\[\]"']/g, "").trim();
 };
