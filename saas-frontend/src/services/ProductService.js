@@ -4,7 +4,7 @@ import api from '../api/axiosInstance';
  * ProductService: Capa de abstracción para la API de Productos.
  * Sigue el patrón de diseño de servicios para desacoplar la UI de la red.
  */
-const BASE_URL = '/api/v1/productos';
+const BASE_URL = 'https://saas-inventory-h49i.onrender.com/api/v1';
 
 const ProductService = {
     
