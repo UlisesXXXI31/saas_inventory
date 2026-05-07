@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/productos")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://saas-inventory-1.onrender.com") // Permite que React se conecte sin bloqueos de seguridad
+@CrossOrigin(origins = "*") // Permite que React se conecte sin bloqueos de seguridad
 public class ProductoController {
 
     private final ProductoService productoService;
