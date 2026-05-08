@@ -16,9 +16,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**") 
                 // En lugar de "*", le damos los orígenes exactos permitidos de forma segura
                 .allowedOrigins(
-                    allowedOrigins,                             // El que viene de tu application.yml (http://localhost:5173)
-                    "https://saas-inventory-h49i.onrender.com", // Tu propio Swagger en producción en Render
-                    "http://localhost:8080"                      // Por si pruebas el Swagger en local
+                    allowedOrigins,                            
+                    "https://saas-inventory-h49i.onrender.com", 
+                    "http://localhost:8080"                      
                 )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
