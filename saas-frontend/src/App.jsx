@@ -132,9 +132,10 @@ const cancelarEdicion = () => {
     <div style={{ backgroundColor: '#1a1a1a', color: 'white', minHeight: '100vh', padding: '40px', fontFamily: 'system-ui' }}>
       <header style={{ textAlign: 'center', marginBottom: '40px' }}>
         <h1 style={{ fontSize: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px' }}>
-          <Package size={48} color="#646cff" /> Panel de Inventario
+          <Package size={48} color="#646cff" /> 
+          <p style={{ color: '#646cff' }}> Panel de Inventario</p>
         </h1>
-        <p style={{ color: '#646cff' }}>Conectado a Spring Boot API v1</p>
+        <p style={{ color: 'white' }}>Conectado a Spring Boot API v1</p>
       </header>
 
       {/* Formulario de producto */}
