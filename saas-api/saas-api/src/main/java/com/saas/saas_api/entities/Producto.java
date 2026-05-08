@@ -40,6 +40,6 @@ public class Producto {
     // Relación con la empresa propietaria del producto
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empresa_id", nullable = false)
-    @JsonIgnoreProperties("productos")
+    @JsonBackReference // Evita que al serializar el producto se vuelva a serializar la empresa
     private Empresa empresa; // Relación con la empresa propietaria del producto
 }

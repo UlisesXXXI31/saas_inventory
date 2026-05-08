@@ -23,9 +23,9 @@ public class Empresa {
 
     private String cif; // Código de Identificación Fiscal
 
-    // AÑADE ESTO:
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
-    @JsonIgnore //  Esto evita que Swagger entre en bucle infinito
+    // Usa @JsonManagedReference en la parte "propietaria" (OneToMany)
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Producto> productos;
 
 }
