@@ -136,34 +136,45 @@ Value: https://saas-inventory-h49i.onrender.com (No brackets, no parentheses!)
 ---
 
 # Versión en Español
-
-Este es un sistema moderno y de extremo a extremo (**Full-Stack**) para la **Gestión de Inventario SaaS**, diseñado para manejar modelos de negocio multi-empresa. La aplicación permite registrar empresas, asignar productos personalizados a cada una, gestionar niveles de stock en tiempo real y filtrar artículos dinámicamente.
+¡Hola! Este es mi proyecto **SaaS Inventory**. Es un sistema para gestionar productos y stock que desarrollé para aprender a conectar un frontend moderno con un servidor backend real y una base de datos relacional PostgreSQL en producción
 
 ## 🚀 Enlaces del Proyecto y Demo en Vivo
-* **Aplicación Frontend:** [https://saas-inventory-1.onrender.com](https://saas-inventory-1.onrender.com)
-* **API Backend (Render):** [https://saas-inventory-h49i.onrender.com](https://saas-inventory-h49i.onrender.com)
-* **Documentación Interactiva (Swagger UI):** [https://saas-inventory-h49i.onrender.com/swagger-ui/index.html](https://saas-inventory-h49i.onrender.com/swagger-ui/index.html)
+
+
+* **🔗 Demo en Vivo (Frontend):** [https://saas-inventory-1.onrender.com](https://saas-inventory-1.onrender.com)
+* **🔗 API URL (Backend):** [https://saas-inventory-h49i.onrender.com](https://saas-inventory-h49i.onrender.com)
+* **🔗 Documentación Interactiva (Swagger):** [https://saas-inventory-h49i.onrender.com/swagger-ui/index.html](https://saas-inventory-h49i.onrender.com/swagger-ui/index.html)
 
 ## 📸 Vista Previa de la Interfaz
-Así luce la aplicación finalizada, mostrando el listado de productos, el sistema de búsqueda y el formulario de gestión:
+Aquí puedes ver cómo luce el panel de administración de inventarios:
 
 <div align="center">
-  <img src="./screenshots/dashboard.png" alt="Panel de Inventario SaaS" width="90%" style="border-radius: 10px; border: 1px solid #333;" />
+  <img src="./screenshots/dashboard.png" alt="SaaS Inventory Dashboard" width="90%" style="border-radius: 10px; border: 1px solid #333;" />
 </div>
 
-## 🛠️ Tecnologías Utilizadas
-* **Backend:** Java 17, Spring Boot 3, Spring Data JPA, Lombok, Gradle.
-* **Frontend:** React, Axios (instancia configurada), Lucide React (Iconos), React Hot Toast (Notificaciones).
-* **Base de Datos:** PostgreSQL.
-* **Despliegue / Hosting:** Render (Servicio Web y PostgreSQL Gestionado).
+---
 
-## 💡 Características Clave
-* **Estructura Multi-empresa:** Productos asociados bidireccionalmente a empresas específicas sin bucles infinitos de serialización JSON.
-* **Operaciones CRUD Completas:** Creación, lectura, actualización y eliminación fluida de productos y empresas.
-* **Buscador en Tiempo Real:** Filtro de búsqueda instantáneo en el cliente por nombre o descripción.
-* **Documentación Interactiva:** Endpoints del backend testeables y documentados con Swagger UI.
-* **CORS Seguro:** Configuración robusta que permite la comunicación fluida entre entornos locales y de producción en la nube.
+## 🚀 Errores que encontré y cómo los solucioné (Mi aprendizaje)
 
+Desplegar una aplicación en producción (**Render**) tiene sus retos. Estos fueron los problemas más importantes que tuve que resolver para que la app funcionara de manera óptima:
+
+### 1. El error de las rutas "/api/v1" (Error 404)
+* **Qué pasaba:** Al principio, el frontend intentaba buscar los productos en `/productos` pero el backend los tenía guardados y estructurados bajo `/api/v1/productos`. El servidor no encontraba la ruta y devolvía un error 404.
+* **Cómo lo solucioné:** Corregí el archivo `ProductService.js` en React para unificar todas las peticiones bajo el prefijo correcto de la API.
+
+### 2. La "URL Monstruo" con corchetes (ERR_NAME_NOT_RESOLVED)
+* **Qué pasaba:** Al configurar la URL del servidor en las variables de entorno, puse corchetes por error: `[https://saas-inventory-h49i.onrender.com]`. Esto hacía que React intentara llamar a una dirección rota que el navegador no entendía.
+* **Cómo lo solucioné:** Limpié la variable de entorno en el panel de Render dejándola limpia (sin corchetes) y añadí un pequeño "limpiador" de texto en mi archivo `axiosInstance.js` para asegurar que la URL siempre se procese sin caracteres extraños.
+
+### 3. El bloqueo por CORS (CORS Policy Error)
+* **Qué pasaba:** Por seguridad, el backend en Spring Boot bloqueaba las peticiones que venían desde la URL de producción de React porque no la tenía registrada como un origen seguro.
+* **Cómo lo solucioné:** Implementé una clase de configuración de CORS en Java (`WebConfig.java`) para decirle explícitamente a Spring Boot que permitiera las peticiones cruzadas de mi web de React en Render.
+
+### 4. Bucle recursivo infinito en JSON (StackOverflowError)
+* **Qué pasaba:** Al establecer la relación bidireccional Uno a Muchos (One-to-Many) entre Empresa y Producto, el serializador de JSON intentaba mapear infinitamente el producto dentro de la empresa, y la empresa dentro del producto.
+* **Cómo lo solucioné:** Estructuré la relación de manera limpia utilizando las anotaciones de Jackson `@JsonManagedReference` en la entidad `Empresa` y `@JsonBackReference` en `Producto`.
+
+---
  ## 🤖 Collaboration asistida con IA
 
 Este proyecto fue desarrollado utilizando flujos de trabajo modernos de **desarrollo asistido por IA**. Se utilizó IA generativa (Gemini) como copiloto de programación (*pair-programming*) para apoyar en:
@@ -172,4 +183,57 @@ Este proyecto fue desarrollado utilizando flujos de trabajo modernos de **desarr
 * Escritura y optimización de código limpio y modular tanto en Spring Boot como en React.
 
 ---
+
+## 🛠️ Tecnologías que usé
+
+* **Java 17** y **Spring Boot 3** (para el backend).
+* **Gradle** (para el manejo de dependencias).
+* **Spring Data JPA** & **Hibernate** (para el ORM).
+* **PostgreSQL** (para la base de datos).
+* **React** con **Vite** (para el frontend rápido).
+* **Axios** (para hacer las peticiones HTTP entre React y Java).
+* **Lucide React** & **React Hot Toast** (para iconos y notificaciones de UI).
+
+---
+
+## ⚙️ Cómo ejecutar el proyecto en tu computadora (Local)
+
+1. Arrancar el Backend (Java)
+  1. Entra a la carpeta del backend.
+  2. Abre el archivo `src/main/resources/application.properties` y pon los datos   de  tu base de datos PostgreSQL local:
+   ```properties
+   spring.datasource.url=jdbc:postgresql://localhost:5432/tu_base_datos
+   spring.datasource.username=tu_usuario
+   spring.datasource.password=tu_contraseña
+
+  3. Ejecuta el servidor desde tu terminal o tu IDE (como IntelliJ o VS Code):
+
+  ./gradlew bootRun
+
+2. Arrancar el Frontend (React)
+   1. Entra a la carpeta del frontend en otra terminal.
+
+   2. Instala las librerías necesarias:
+
+   npm install
+
+   3. Crea un archivo llamado .env en la raíz de la carpeta frontend y pon la URL de tu servidor local:
+
+   # ✅ Asegúrate de no poner corchetes [] ni barras finales /
+     VITE_API_URL=http://localhost:8080
+
+   4. Enciende el servidor de desarrollo de React:
+
+     npm run dev
+
+🌐 Configuración clave para producción (En Render)
+Para que el proyecto funcione desplegado en Render, la variable de entorno del Frontend debe configurarse así en el panel de control:
+
+Key / Nombre: VITE_API_URL
+
+Value / Valor: https://saas-inventory-h49i.onrender.com (¡Sin corchetes ni paréntesis!)
+
+⚠️ Nota importante: Cada vez que cambies esta variable en Render, recuerda hacer un Manual Deploy -> Clear Cache and Deploy en el servicio del Frontend para que React se compile con la URL nueva.
+
+
 
