@@ -137,79 +137,57 @@ const cancelarEdicion = () => {
         <p style={{ color: '#888' }}>Conectado a Spring Boot API v1</p>
       </header>
 
+      {/* Formulario de producto */}
       <ProductoForm 
-       nuevoProducto={nuevoProducto}
-       setNuevoProducto={setNuevoProducto}
-       enviarProducto={enviarProducto}
-       editando={editando}
-       cancelarEdicion={cancelarEdicion}
-    />
-{/* --- BUSCADOR --- */}
-<div style={{ marginBottom: '30px', position: 'relative' }}>
-  <input
-    type="text"
-    placeholder="🔍 Buscar por nombre o descripción..."
-    value={busqueda}
-    onChange={(e) => setBusqueda(e.target.value)}
-    style={{
-      width: '100%',
-      padding: '15px 20px',
-      borderRadius: '12px',
-      border: '1px solid #333',
-      backgroundColor: '#2a2a2a',
-      color: 'white',
-      fontSize: '1rem',
-      outline: 'none',
-      boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
-    }}
-  />
-  
-  {busqueda && (
-    <p style={{ color: '#888', marginTop: '10px', fontSize: '0.9rem' }}>
-      Mostrando {productosFiltrados.length} resultados para "{busqueda}"
-    </p>
-  )}
-  {/* --- LISTADO (Limpio y escalable) --- */}
-  <ProductoList 
+        nuevoProducto={nuevoProducto}
+        setNuevoProducto={setNuevoProducto}
+        enviarProducto={enviarProducto}
+        editando={editando}
+        cancelarEdicion={cancelarEdicion}
+      />
+
+      {/* --- BUSCADOR --- */}
+      <div style={{ marginBottom: '30px', position: 'relative' }}>
+        <input
+          type="text"
+          placeholder="🔍 Buscar por nombre o descripción..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '15px 20px',
+            borderRadius: '12px',
+            border: '1px solid #333',
+            backgroundColor: '#2a2a2a',
+            color: 'white',
+            fontSize: '1rem',
+            outline: 'none',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+          }}
+        />
+        
+        {busqueda && (
+          <p style={{ color: '#888', marginTop: '10px', fontSize: '0.9rem' }}>
+            Mostrando {productosFiltrados.length} resultados para "{busqueda}"
+          </p>
+        )}
+      </div>
+
+      {/* --- LISTADO (Limpio, modular y único) --- */}
+      <ProductoList 
         productos={productosFiltrados} 
         iniciarEdicion={iniciarEdicion} 
         eliminarProducto={eliminarProducto} 
-  />
-</div>
+      />
 
-{/* --- LISTADO DE PRODUCTOS (Usando la lista filtrada) --- */}
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
-  {productosFiltrados.map((p) => (
-    <ProductoCard 
-      key={p.id} 
-      p={p} 
-      iniciarEdicion={iniciarEdicion} 
-      eliminarProducto={eliminarProducto} 
-    />
-  ))}
-</div>
-      {productos.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '50px', border: '2px dashed #444', borderRadius: '20px' }}>
-          <p style={{ fontSize: '1.2rem' }}>⚠️ Base de Datos vacía. Envía un producto desde Insomnia.</p>
-        </div>
-      ) : <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
-  {productos.map((p) => (
-    <ProductoCard 
-      key={p.id} 
-      p={p} 
-      iniciarEdicion={iniciarEdicion} 
-      eliminarProducto={eliminarProducto} 
-    />
-  ))}
-</div>
-      }
-
+      {/* Botón de actualizar manual */}
       <button 
         onClick={fetchProductos}
         style={{ marginTop: '30px', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', backgroundColor: '#646cff', color: 'white', border: 'none' }}
       >
         🔄 Actualizar Lista
       </button>
+
       <Toaster position="top-right" reverseOrder={false} />
     </div>
   )
