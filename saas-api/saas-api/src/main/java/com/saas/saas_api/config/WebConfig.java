@@ -11,13 +11,18 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${app.cors.allowed-origins}")
     private String allowedOrigins;
 
-   @Override
-public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/**") 
-            .allowedOriginPatterns("*") // Usa patterns en lugar de allowedOrigins si vas a usar credenciales
-            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-            .allowedHeaders("*")
-            .allowCredentials(true) // Ahora sí funcionará con el pattern "*"
-            .maxAge(3600);
-}
+ @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**") 
+                // En lugar de "*", le damos los orígenes exactos permitidos de forma segura
+                .allowedOrigins(
+                    allowedOrigins,                             // El que viene de tu application.yml (http://localhost:5173)
+                    "https://saas-inventory-h49i.onrender.com", // Tu propio Swagger en producción en Render
+                    "http://localhost:8080"                      // Por si pruebas el Swagger en local
+                )
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true) // Al usar orígenes explícitos arriba, esto JAMÁS volverá a fallar
+                .maxAge(3600);
+    }
 }
