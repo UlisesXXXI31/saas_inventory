@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/empresas")
-@CrossOrigin(origins = "*") // Para que React no se queje luego
 public class EmpresaController {
     @Autowired
     private EmpresaRepository empresaRepository; // O tu EmpresaService si lo creaste
