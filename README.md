@@ -1,13 +1,25 @@
 # 📦 SaaS Inventory - Sistema de Gestión de Inventario / Inventory Management System
 
 <div align="center">
-  <a href="https://saas-inventory-1.onrender.com">
+  <a href="https://saas-inventory-1.onrender.com" target="_blank">
     <img src="https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge&logo=render&logoColor=white" alt="Live Demo" />
   </a>
-  <img src="https://img.shields.io/badge/Backend-Spring%20Boot%203-6DB33F?style=for-the-badge&logo=spring&logoColor=white" alt="Spring Boot" />
-  <img src="https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/AI--Assisted-Gemini-blueviolet?style=for-the-badge&logo=google-gemini&logoColor=white" alt="AI Assisted" />
+  
+  <a href="https://spring.io/projects/spring-boot" target="_blank">
+    <img src="https://img.shields.io/badge/Backend-Spring%20Boot%203-6DB33F?style=for-the-badge&logo=spring&logoColor=white" alt="Spring Boot" />
+  </a>
+  
+  <a href="https://react.dev" target="_blank">
+    <img src="https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  </a>
+  
+  <a href="https://www.postgresql.org" target="_blank">
+    <img src="https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  </a>
+  
+  <a href="#de-colaboración-con-ia-desarrollo-asistido">
+    <img src="https://img.shields.io/badge/AI--Assisted-Gemini-blueviolet?style=for-the-badge&logo=google-gemini&logoColor=white" alt="AI Assisted" />
+  </a>
 </div>
 
 <div align="center">
