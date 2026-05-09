@@ -35,7 +35,7 @@ Hello! This is my SaaS Inventory project. It is a system to manage products and 
 Here is a look at the inventory in action, showing the company inventory dashboard, search filtering, and CRUD operations:
 
 <div align="center">
-  <img src="./screenshots/dashboard.png" alt="SaaS Inventory Dashboard" width="90%" style="border-radius: 10px; border: 1px solid #333;" />
+  <img src="screenshots/dashboard.png" alt="SaaS Inventory Dashboard" width="90%" style="border-radius: 10px; border: 1px solid #333;" />
 </div>
 
 🚀 Issues I Encountered & How I Solved Them (My Learning Journey)
