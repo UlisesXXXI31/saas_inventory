@@ -38,7 +38,7 @@ Here is a look at the inventory in action, showing the company inventory dashboa
   <img src="./screenshots/dashboard.PNG" alt="SaaS Inventory Dashboard" width="90%" style="border-radius: 10px; border: 1px solid #333;" />
 </div>
 
-🚀 Issues I Encountered & How I Solved Them (My Learning Journey)
+## 🚀 Issues I Encountered & How I Solved Them (My Learning Journey)
 Deploying an application to production (Render) has its challenges. These were the most important issues I had to solve to get the app running properly:
 
 1. The "/api/v1" Route Error (404 Error)
@@ -90,7 +90,7 @@ Lucide React & React Hot Toast (for UI icons and notifications).
 * **Interactive API Playground:** Fully documented endpoints via Swagger.
 * **Secure CORS Configuration:** Standardized origins supporting local and cloud environments.
 
-⚙️ How to Run the Project Locally
+## ⚙️ How to Run the Project Locally
 1. Start the Backend (Java)
   1. Go to the backend folder.
 
