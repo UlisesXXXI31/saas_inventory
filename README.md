@@ -219,14 +219,14 @@ Este proyecto fue desarrollado utilizando flujos de trabajo modernos de **desarr
 
    3. Crea un archivo llamado .env en la raíz de la carpeta frontend y pon la URL de tu servidor local:
 
-   # ✅ Asegúrate de no poner corchetes [] ni barras finales /
+  ## ✅ Asegúrate de no poner corchetes [] ni barras finales /
      VITE_API_URL=http://localhost:8080
 
    4. Enciende el servidor de desarrollo de React:
 
      npm run dev
 
-🌐 Configuración clave para producción (En Render)
+## 🌐 Configuración clave para producción (En Render)
 Para que el proyecto funcione desplegado en Render, la variable de entorno del Frontend debe configurarse así en el panel de control:
 
 Key / Nombre: VITE_API_URL
