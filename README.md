@@ -38,7 +38,7 @@ Hello! This is my SaaS Inventory project. It is a system to manage products and 
 
 🔗 Interactive Documentation (Swagger): https://saas-inventory-h49i.onrender.com/swagger-ui/index.html
 
-## 🚀 Live Demo & Links
+##  Live Demo & Links
 * **Frontend Web App (Render):** [https://saas-inventory-1.onrender.com](https://saas-inventory-1.onrender.com/)
 * **Backend API (Render):** [https://saas-inventory-h49i.onrender.com](https://saas-inventory-h49i.onrender.com)
 * **API Documentation (Swagger UI):** [https://saas-inventory-h49i.onrender.com/swagger-ui/index.html](https://saas-inventory-h49i.onrender.com/swagger-ui/index.html)
@@ -50,7 +50,7 @@ Here is a look at the inventory in action, showing the company inventory dashboa
   <img src="./screenshots/dashboard.PNG" alt="SaaS Inventory Dashboard" width="90%" style="border-radius: 10px; border: 1px solid #333;" />
 </div>
 
-## 🚀 Issues I Encountered & How I Solved Them (My Learning Journey)
+##  Issues I Encountered & How I Solved Them (My Learning Journey)
 Deploying an application to production (Render) has its challenges. These were the most important issues I had to solve to get the app running properly:
 
 1. The "/api/v1" Route Error (404 Error)
@@ -73,14 +73,14 @@ What happened: When setting up the bidirectional One-to-Many relationship betwee
 
 How I fixed it: I cleanly structured the relationship using Jackson annotations: @JsonManagedReference in the Empresa entity and @JsonBackReference in the Producto entity.
 
-## 🤖 AI Assistance & Collaboration 
+##  AI Assistance & Collaboration 
 
 This project was developed using modern **AI-assisted development** workflows. Generative AI (Gemini) was utilized as a pair-programmer to assist in:
 * Architectural decision-making (JPA bidirectional relationships & Jackson references).
 * Debugging system errors (such as CORS configurations and React rendering cycles).
 * Writing and optimization of clean, modular code for both Spring Boot and React.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 Java 17 & Spring Boot 3 (for the backend server).
 
 Gradle (for managing Java dependencies).
@@ -95,14 +95,14 @@ Axios (for making network calls between React and Java).
 
 Lucide React & React Hot Toast (for UI icons and notifications).
 
-## 💡 Key Features
+##  Key Features
 * **Multi-tenant Concept:** Products are bidirectionally mapped to specific companies without infinite JSON serialization loops.
 * **Full CRUD Operations:** Seamless creation, reading, updating, and deletion of products and companies.
 * **Live Search Filter:** Instant client-side search filtering by name or description.
 * **Interactive API Playground:** Fully documented endpoints via Swagger.
 * **Secure CORS Configuration:** Standardized origins supporting local and cloud environments.
 
-## ⚙️ How to Run the Project Locally
+##  How to Run the Project Locally
 1. Start the Backend (Java)
   1. Go to the backend folder.
 
@@ -131,13 +131,13 @@ Lucide React & React Hot Toast (for UI icons and notifications).
 
    3. Create a file named .env in the root of the frontend folder and set your local server URL:
 
-   # ✅ Make sure not to use brackets [] or trailing slashes /
+   #  Make sure not to use brackets [] or trailing slashes /
      VITE_API_URL=http://localhost:8080
 
    4. Start the React development server:
       npm run dev
 
-🌐 Key Configuration for Production (On Render)
+ Key Configuration for Production (On Render)
 To make the deployed project work on Render, the Frontend environment variable must be configured in the dashboard as follows:
 
 Key: VITE_API_URL
@@ -150,14 +150,14 @@ Value: https://saas-inventory-h49i.onrender.com (No brackets, no parentheses!)
 # Versión en Español
 ¡Hola! Este es mi proyecto **SaaS Inventory**. Es un sistema para gestionar productos y stock que desarrollé para aprender a conectar un frontend moderno con un servidor backend real y una base de datos relacional PostgreSQL en producción
 
-## 🚀 Enlaces del Proyecto y Demo en Vivo
+##  Enlaces del Proyecto y Demo en Vivo
 
 
 * **🔗 Demo en Vivo (Frontend):** [https://saas-inventory-1.onrender.com](https://saas-inventory-1.onrender.com)
 * **🔗 API URL (Backend):** [https://saas-inventory-h49i.onrender.com](https://saas-inventory-h49i.onrender.com)
 * **🔗 Documentación Interactiva (Swagger):** [https://saas-inventory-h49i.onrender.com/swagger-ui/index.html](https://saas-inventory-h49i.onrender.com/swagger-ui/index.html)
 
-## 📸 Vista Previa de la Interfaz
+##  Vista Previa de la Interfaz
 Aquí puedes ver cómo luce el panel de administración de inventarios:
 
 <div align="center">
@@ -166,7 +166,7 @@ Aquí puedes ver cómo luce el panel de administración de inventarios:
 
 ---
 
-## 🚀 Errores que encontré y cómo los solucioné (Mi aprendizaje)
+##  Errores que encontré y cómo los solucioné (Mi aprendizaje)
 
 Desplegar una aplicación en producción (**Render**) tiene sus retos. Estos fueron los problemas más importantes que tuve que resolver para que la app funcionara de manera óptima:
 
@@ -187,7 +187,7 @@ Desplegar una aplicación en producción (**Render**) tiene sus retos. Estos fue
 * **Cómo lo solucioné:** Estructuré la relación de manera limpia utilizando las anotaciones de Jackson `@JsonManagedReference` en la entidad `Empresa` y `@JsonBackReference` en `Producto`.
 
 ---
- ## 🤖 Collaboration asistida con IA
+ ##  Collaboration asistida con IA
 
 Este proyecto fue desarrollado utilizando flujos de trabajo modernos de **desarrollo asistido por IA**. Se utilizó IA generativa (Gemini) como copiloto de programación (*pair-programming*) para apoyar en:
 * Toma de decisiones de arquitectura (relaciones bidireccionales de JPA y referencias de Jackson).
@@ -196,7 +196,7 @@ Este proyecto fue desarrollado utilizando flujos de trabajo modernos de **desarr
 
 ---
 
-## 🛠️ Tecnologías que usé
+##  Tecnologías que usé
 
 * **Java 17** y **Spring Boot 3** (para el backend).
 * **Gradle** (para el manejo de dependencias).
@@ -212,11 +212,17 @@ Este proyecto fue desarrollado utilizando flujos de trabajo modernos de **desarr
 
 1. Arrancar el Backend (Java)
   1. Entra a la carpeta del backend.
-  2. Abre el archivo `src/main/resources/application.properties` y pon los datos   de  tu base de datos PostgreSQL local:
-   ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/tu_base_datos
-   spring.datasource.username=tu_usuario
-   spring.datasource.password=tu_contraseña
+  2. Abre el archivo `src/main/resources/application.yaml` y pon los datos   de  tu base de datos PostgreSQL local:
+ 
+   spring:
+    datasource:
+      url: jdbc:postgresql://localhost:5432/tu_base_datos
+      username: tu_usuario
+      password: tu_contraseña
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
   3. Ejecuta el servidor desde tu terminal o tu IDE (como IntelliJ o VS Code):
 
@@ -231,14 +237,15 @@ Este proyecto fue desarrollado utilizando flujos de trabajo modernos de **desarr
 
    3. Crea un archivo llamado .env en la raíz de la carpeta frontend y pon la URL de tu servidor local:
 
-## ✅ Asegúrate de no poner corchetes [] ni barras finales /
-     VITE_API_URL=http://localhost:8080
+    # Asegúrate de no poner corchetes [] ni barras finales /
+    
+    VITE_API_URL=http://localhost:8080
 
    4. Enciende el servidor de desarrollo de React:
 
      npm run dev
 
-## 🌐 Configuración clave para producción (En Render)
+##  Configuración clave para producción (En Render)
 Para que el proyecto funcione desplegado en Render, la variable de entorno del Frontend debe configurarse así en el panel de control:
 
 Key / Nombre: VITE_API_URL
